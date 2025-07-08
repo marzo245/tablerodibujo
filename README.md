@@ -148,39 +148,6 @@ No se requieren variables de entorno para este proyecto.
    - Dibujar, recargar página
    - Verificar que los dibujos persisten
 
-## 🚧 Roadmap y Mejoras Futuras
-
-### Funcionalidades Planificadas
-- [ ] **Múltiples colores**: Selector de colores para diferentes usuarios
-- [ ] **Grosor de trazo**: Control deslizante para ajustar el grosor
-- [ ] **Formas geométricas**: Herramientas para círculos, rectángulos, etc.
-- [ ] **Deshacer/Rehacer**: Funcionalidad de undo/redo
-- [ ] **Exportar imagen**: Guardar el canvas como PNG/SVG
-- [ ] **WebSockets**: Sincronización real en tiempo real con servidor
-- [ ] **Salas de dibujo**: Múltiples tableros independientes
-- [ ] **Chat integrado**: Comunicación entre usuarios
-
-### Mejoras Técnicas
-- [ ] **TypeScript**: Migración para mejor tipado
-- [ ] **Testing**: Implementar pruebas unitarias y de integración
-- [ ] **PWA**: Convertir en Progressive Web App
-- [ ] **Optimización**: Mejorar rendimiento para dibujos complejos
-
-## 🤝 Contribuciones
-
-¡Las contribuciones son bienvenidas! Para contribuir:
-
-1. **Fork** el proyecto
-2. **Crea** una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. **Commit** tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** a la rama (`git push origin feature/AmazingFeature`)
-5. **Abre** un Pull Request
-
-### Estándares de Código
-- Seguir las convenciones de React y JavaScript moderno
-- Usar comentarios en español para documentación
-- Mantener componentes funcionales y hooks
-- Escribir código limpio y modular
 
 ## 📄 Licencia
 
@@ -190,8 +157,4 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 
 Desarrollado como proyecto educativo para aprender React, p5.js y técnicas de sincronización en el navegador.
 
-## 🙏 Agradecimientos
 
-- **React Team** por la excelente librería de UI
-- **p5.js Community** por la potente librería de gráficos
-- **Vite Team** por las herramientas de desarrollo rápidas
