@@ -3,29 +3,50 @@ import p5 from 'p5'
 import './App.css'
 
 function App() {
-  // Estados simplificados
+  // Estados principales
   const [dibujos, setDibujos] = useState([])
   const [dibujando, setDibujando] = useState(false)
   const [canvasListo, setCanvasListo] = useState(false)
   
-  // Color fijo para el usuario
-  const colorUsuario = '#FF6B6B'
+  // Estados para herramientas de dibujo
+  const [colorUsuario, setColorUsuario] = useState('#FF6B6B')
+  const [grosorTrazo, setGrosorTrazo] = useState(3)
+  
+  // Función para cambiar el grosor del trazo de forma segura
+  const cambiarGrosorTrazo = (nuevoValor) => {
+    const nuevoGrosor = parseInt(nuevoValor)
+    console.log('Cambiando grosor a:', nuevoGrosor)
+    if (!isNaN(nuevoGrosor) && nuevoGrosor >= 1 && nuevoGrosor <= 20) {
+      setGrosorTrazo(nuevoGrosor)
+    }
+  }
+  
+  // Colores predefinidos para selección rápida
+  const coloresPredefinidos = [
+    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
+    '#FFEAA7', '#FD79A8', '#FDCB6E', '#6C5CE7',
+    '#A29BFE', '#FF7675', '#74B9FF', '#00B894'
+  ]
   
   // Referencias para p5.js
   const canvasRef = useRef(null)
   const p5Instance = useRef(null)
   const estadoRef = useRef({
     dibujos,
-    dibujando
+    dibujando,
+    colorUsuario,
+    grosorTrazo
   })
   
   // Actualizar la referencia cuando cambien los estados
   useEffect(() => {
     estadoRef.current = {
       dibujos,
-      dibujando
+      dibujando,
+      colorUsuario,
+      grosorTrazo
     }
-  }, [dibujos, dibujando])
+  }, [dibujos, dibujando, colorUsuario, grosorTrazo])
   
   // Cargar dibujos desde localStorage al iniciar
   useEffect(() => {
@@ -72,11 +93,11 @@ function App() {
             p.stroke(trazo.color)
             p.strokeWeight(trazo.grosor)
             
-            // Si solo hay un punto, dibujar un círculo pequeño
+            // Si solo hay un punto, dibujar un círculo con el grosor correcto
             if (trazo.puntos.length === 1) {
               p.fill(trazo.color)
               p.noStroke()
-              p.ellipse(trazo.puntos[0].x, trazo.puntos[0].y, 3, 3)
+              p.ellipse(trazo.puntos[0].x, trazo.puntos[0].y, trazo.grosor, trazo.grosor)
             } else {
               // Si hay más de un punto, dibujar líneas conectadas
               p.noFill()
@@ -106,10 +127,11 @@ function App() {
           setDibujando(true)
           const nuevoTrazo = {
             id: Date.now(),
-            color: colorUsuario,
-            grosor: 3,
+            color: estadoRef.current.colorUsuario,
+            grosor: estadoRef.current.grosorTrazo,
             puntos: [{ x: Math.round(x), y: Math.round(y) }]
           }
+          console.log('Nuevo trazo con grosor:', estadoRef.current.grosorTrazo, nuevoTrazo)
           setDibujos(prev => [...prev, nuevoTrazo])
         }
         return false // Prevenir comportamiento por defecto
@@ -169,26 +191,77 @@ function App() {
       </header>
       
       <div className="controles">
+        <div className="herramientas-dibujo">
+          {/* Selector de colores */}
+          <div className="selector-colores">
+            <label>Color:</label>
+            <div className="paleta-colores">
+              {coloresPredefinidos.map((color, index) => (
+                <button
+                  key={index}
+                  className={`color-btn ${colorUsuario === color ? 'activo' : ''}`}
+                  style={{ backgroundColor: color }}
+                  onClick={() => setColorUsuario(color)}
+                  title={`Color ${index + 1}`}
+                />
+              ))}
+              {/* Selector de color personalizado */}
+              <input
+                type="color"
+                value={colorUsuario}
+                onChange={(e) => setColorUsuario(e.target.value)}
+                className="color-picker"
+                title="Color personalizado"
+              />
+            </div>
+          </div>
+          
+          {/* Selector de grosor */}
+          <div className="selector-grosor">
+            <label>Grosor: {grosorTrazo}px</label>
+            <div className="grosor-controles">
+              <button 
+                className="btn-grosor"
+                onClick={() => cambiarGrosorTrazo(grosorTrazo - 1)}
+                disabled={grosorTrazo <= 1}
+              >
+                -
+              </button>
+              <input
+                type="range"
+                min="1"
+                max="20"
+                value={grosorTrazo}
+                onChange={(e) => cambiarGrosorTrazo(e.target.value)}
+                className="grosor-slider"
+              />
+              <button 
+                className="btn-grosor"
+                onClick={() => cambiarGrosorTrazo(grosorTrazo + 1)}
+                disabled={grosorTrazo >= 20}
+              >
+                +
+              </button>
+            </div>
+            <div className="preview-grosor">
+              <div 
+                style={{
+                  width: `${grosorTrazo}px`,
+                  height: `${grosorTrazo}px`,
+                  backgroundColor: colorUsuario,
+                  borderRadius: '50%'
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        
         <button 
           className="btn btn-limpiar"
           onClick={limpiarTablero}
         >
           🗑️ Limpiar Tablero
         </button>
-        
-        <div className="info-color">
-          <span>Tu color: </span>
-          <div 
-            style={{ 
-              display: 'inline-block', 
-              width: '20px', 
-              height: '20px', 
-              backgroundColor: colorUsuario,
-              borderRadius: '50%',
-              marginLeft: '5px'
-            }}
-          ></div>
-        </div>
       </div>
       
       <div className="canvas-wrapper">

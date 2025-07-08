@@ -28,6 +28,9 @@ Este es un proyecto de tablero de dibujo interactivo desarrollado con React y p5
 
 ## Funcionalidades Implementadas
 - **Dibujo libre**: Click y arrastrar para crear trazos
+- **Selector de colores**: 12 colores predefinidos + selector personalizado
+- **Control de grosor**: Slider para ajustar grosor de trazo (1-20px)
+- **Preview en tiempo real**: Vista previa del color y grosor seleccionado
 - **Sincronización automática**: Los dibujos aparecen en todas las ventanas
 - **Borrado global**: Limpia el canvas en todas las ventanas
 - **Persistencia**: Los dibujos se mantienen al recargar la página

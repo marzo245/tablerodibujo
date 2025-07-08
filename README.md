@@ -9,11 +9,13 @@ Este proyecto implementa un tablero de dibujo digital donde los usuarios pueden 
 ## ✨ Características
 
 - **🎨 Dibujo en tiempo real**: Canvas interactivo para crear trazos con el mouse
-- **🔄 Sincronización automática**: Los dibujos se sincronizan entre múltiples ventanas del navegador
+- **🌈 Selector de colores**: Paleta de 12 colores predefinidos + selector personalizado
+- **� Control de grosor**: Slider para ajustar el grosor del trazo (1-20px)
+- **�🔄 Sincronización automática**: Los dibujos se sincronizan entre múltiples ventanas del navegador
 - **🗑️ Borrado global**: Función para limpiar el tablero en todas las ventanas simultáneamente
 - **💾 Persistencia**: Los dibujos se guardan automáticamente y persisten entre sesiones
 - **📱 Diseño responsivo**: Interfaz adaptable a diferentes tamaños de pantalla
-- **🎯 Interfaz minimalista**: Diseño limpio y fácil de usar
+- **🎯 Interfaz intuitiva**: Controles fáciles de usar con preview en tiempo real
 
 ## �️ Tecnologías Utilizadas
 
@@ -63,22 +65,29 @@ npm run preview
 
 ## 🎮 Instrucciones de Uso
 
-### Dibujo Básico
-1. **Dibujar**: Haz clic y arrastra el mouse sobre el canvas
-2. **Soltar**: Libera el botón del mouse para finalizar el trazo
+### Herramientas de Dibujo
+1. **Seleccionar color**: 
+   - Haz clic en cualquiera de los 12 colores predefinidos
+   - O usa el selector de color personalizado para elegir cualquier color
+2. **Ajustar grosor**: 
+   - Usa el slider para cambiar el grosor del trazo (1-20 píxeles)
+   - El preview muestra cómo se verá el trazo
+3. **Dibujar**: Haz clic y arrastra el mouse sobre el canvas
+4. **Soltar**: Libera el botón del mouse para finalizar el trazo
 
 ### Funcionalidades Colaborativas
 1. **Múltiples ventanas**:
    - Abre la aplicación en una ventana del navegador
    - Abre una segunda ventana (Ctrl+N) y navega a la misma URL
    - Los dibujos aparecerán automáticamente en ambas ventanas
+   - Cada ventana puede usar diferentes colores y grosores
 
 2. **Borrado sincronizado**:
    - Presiona el botón "🗑️ Limpiar Tablero"
    - El canvas se limpiará en todas las ventanas abiertas
 
 ### Persistencia
-- Los dibujos se guardan automáticamente
+- Los dibujos se guardan automáticamente con su color y grosor
 - Al recargar la página, los dibujos previos se cargan automáticamente
 - Los datos persisten hasta que se use la función de borrado
 
@@ -138,21 +147,30 @@ No se requieren variables de entorno para este proyecto.
 1. **Funcionalidad de dibujo**:
    - Verificar que se pueden crear trazos
    - Validar que los trazos se renderizan correctamente
+   - Probar diferentes colores y grosores
 
-2. **Sincronización**:
+2. **Herramientas de dibujo**:
+   - Cambiar entre colores predefinidos
+   - Usar el selector de color personalizado
+   - Ajustar el grosor y verificar el preview
+   - Verificar que los cambios se aplican a nuevos trazos
+
+3. **Sincronización**:
    - Abrir múltiples ventanas
    - Verificar sincronización en tiempo real
    - Probar función de borrado global
+   - Confirmar que las herramientas funcionan independientemente en cada ventana
 
-3. **Persistencia**:
-   - Dibujar, recargar página
-   - Verificar que los dibujos persisten
+4. **Persistencia**:
+   - Dibujar con diferentes colores y grosores
+   - Recargar página
+   - Verificar que todos los trazos persisten con sus propiedades originales
 
 ## 🚧 Roadmap y Mejoras Futuras
 
 ### Funcionalidades Planificadas
-- [ ] **Múltiples colores**: Selector de colores para diferentes usuarios
-- [ ] **Grosor de trazo**: Control deslizante para ajustar el grosor
+- [x] **Múltiples colores**: Selector de colores para diferentes usuarios ✅
+- [x] **Grosor de trazo**: Control deslizante para ajustar el grosor ✅
 - [ ] **Formas geométricas**: Herramientas para círculos, rectángulos, etc.
 - [ ] **Deshacer/Rehacer**: Funcionalidad de undo/redo
 - [ ] **Exportar imagen**: Guardar el canvas como PNG/SVG
