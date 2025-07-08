@@ -166,6 +166,7 @@ No se requieren variables de entorno para este proyecto.
    - Recargar página
    - Verificar que todos los trazos persisten con sus propiedades originales
 
+<<<<<<< HEAD
 ## 🚧 Roadmap y Mejoras Futuras
 
 ### Funcionalidades Planificadas
@@ -199,6 +200,8 @@ No se requieren variables de entorno para este proyecto.
 - Usar comentarios en español para documentación
 - Mantener componentes funcionales y hooks
 - Escribir código limpio y modular
+=======
+>>>>>>> 91a28ca1ed8b18a523af0a80a1ed55199be94178
 
 ## 📄 Licencia
 
@@ -208,8 +211,4 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 
 Desarrollado como proyecto educativo para aprender React, p5.js y técnicas de sincronización en el navegador.
 
-## 🙏 Agradecimientos
 
-- **React Team** por la excelente librería de UI
-- **p5.js Community** por la potente librería de gráficos
-- **Vite Team** por las herramientas de desarrollo rápidas

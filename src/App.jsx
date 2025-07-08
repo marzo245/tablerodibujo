@@ -14,10 +14,17 @@ function App() {
   
   // Función para cambiar el grosor del trazo de forma segura
   const cambiarGrosorTrazo = (nuevoValor) => {
-    const nuevoGrosor = parseInt(nuevoValor)
-    console.log('Cambiando grosor a:', nuevoGrosor)
-    if (!isNaN(nuevoGrosor) && nuevoGrosor >= 1 && nuevoGrosor <= 20) {
-      setGrosorTrazo(nuevoGrosor)
+    try {
+      const nuevoGrosor = parseInt(nuevoValor)
+      console.log('Cambiando grosor a:', nuevoGrosor)
+      if (!isNaN(nuevoGrosor) && nuevoGrosor >= 1 && nuevoGrosor <= 20) {
+        // Usar setTimeout para evitar conflictos con eventos de p5.js
+        setTimeout(() => {
+          setGrosorTrazo(nuevoGrosor)
+        }, 0)
+      }
+    } catch (error) {
+      console.error("Error al cambiar el grosor:", error)
     }
   }
   
@@ -246,12 +253,21 @@ function App() {
             <div className="preview-grosor">
               <div 
                 style={{
-                  width: `${grosorTrazo}px`,
-                  height: `${grosorTrazo}px`,
+                  width: `${Math.max(grosorTrazo * 2, 10)}px`,
+                  height: `${Math.max(grosorTrazo * 2, 10)}px`,
                   backgroundColor: colorUsuario,
-                  borderRadius: '50%'
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
-              />
+              >
+                <span style={{ 
+                  fontSize: '9px', 
+                  color: grosorTrazo > 6 ? 'white' : 'black', 
+                  fontWeight: 'bold' 
+                }}>{grosorTrazo}</span>
+              </div>
             </div>
           </div>
         </div>
